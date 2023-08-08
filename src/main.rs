@@ -1,6 +1,9 @@
 fn main() {
     println!("Hello, Rust 101!");
+    primatives();
+}
 
+fn primatives() {
     // integers
     println!("Max size of u32: {}", u32::MAX);
     println!("Max size of u64: {}", u64::MAX);
