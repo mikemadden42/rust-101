@@ -1,6 +1,29 @@
+// This constant is global.
+const MPG: f64 = 37.5;
+
 fn main() {
     println!("Hello, Rust 101!");
     primatives();
+    variables();
+}
+
+fn variables() {
+    // Variables are imutable by default.
+    let greeting = "Hello, world!";
+    println!("{greeting}");
+
+    // This will to work without declaring greeting with a mut.
+    // greeting = "Hello, again!";
+    // println!("{greeting}");
+
+    // constants
+    println!("Miles per gallon: {MPG}");
+
+    // suffixes & underscores
+    let x = 42_u32;
+    let y = 1_000_000;
+    println!("x = {x}");
+    println!("y = {y}");
 }
 
 fn primatives() {
