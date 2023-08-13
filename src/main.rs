@@ -7,6 +7,30 @@ fn main() {
     primatives();
     variables();
     challenge1();
+    compount_primatives();
+}
+
+fn compount_primatives() {
+    // TUPLES
+    // Max number of items in a tuple is 12.
+    let student_a = ("Johhny", "C", 2.01);
+    // let name = student_a.0;
+    // let grade = student_a.1;
+    // let gpa = student_a.2;
+    let (name, grade, gpa) = student_a;
+    println!("Name: {name}, Grade: {grade}, GPU: {gpa}");
+
+    // ARRAYS
+    // Use brackets [].
+    // Max number of items in an array is 32.
+    // Elements must be similar data types.
+    let students = ["Johnny", "Bill", "Ike"];
+    println!("Second student: {}", students[1]);
+
+    // SLICES
+    let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    let slice = &numbers[2..6];
+    println!("{slice:?}");
 }
 
 fn challenge1() {
@@ -30,6 +54,7 @@ fn challenge1() {
         "My name is {my_name} and I am {age} years old. I will turn {new_age} on {my_birthday}"
     );
 }
+
 fn variables() {
     // Variables are imutable by default.
     let greeting = "Hello, world!";
