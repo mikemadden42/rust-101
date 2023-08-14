@@ -7,10 +7,35 @@ fn main() {
     primatives();
     variables();
     challenge1();
-    compount_primatives();
+    compound_primatives();
+    strings();
 }
 
-fn compount_primatives() {
+fn strings() {
+    // There are many different types of strings.
+    // We will likely use String and &str the most.
+    // str - string slice
+    // &str - borrowed string slice - cannot be modified
+    // String - can be modified
+    // &str - essentially a subset of String
+    // String - has capacity
+
+    // There is no push_str method for &str.
+    // let name = "Wyatt";
+    // name.push_str(" Earp");
+    // println!("{name}")
+
+    let mut name1 = String::new();
+    name1.push_str("Wyatt Earp");
+    println!("{name1}");
+
+    let name2 = "Virgil Earp".to_string();
+    let name3 = String::from("Doc Holiday");
+    println!("{name2}");
+    println!("{name3}");
+}
+
+fn compound_primatives() {
     // TUPLES
     // Max number of items in a tuple is 12.
     let student_a = ("Johhny", "C", 2.01);
