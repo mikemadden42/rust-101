@@ -33,6 +33,12 @@ fn strings() {
     let name3 = String::from("Doc Holiday");
     println!("{name2}");
     println!("{name3}");
+
+    let message = "Hello, \"world\"!";
+    println!("{message}");
+
+    let heart = '\u{2764}';
+    println!("{heart}");
 }
 
 fn compound_primatives() {
