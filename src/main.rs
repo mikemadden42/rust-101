@@ -1,3 +1,5 @@
+use std::io;
+
 // These constants are global.
 const MPG: f64 = 37.5;
 const BIRTHDAY: i32 = 1;
@@ -9,6 +11,15 @@ fn main() {
     challenge1();
     compound_primatives();
     strings();
+    user_input();
+}
+
+fn user_input() {
+    println!("username: ");
+    let mut username = String::new();
+    let result = io::stdin().read_line(&mut username);
+    println!("Welcome {}...", username.trim_end());
+    println!("{result:?}");
 }
 
 fn strings() {
