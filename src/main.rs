@@ -12,6 +12,17 @@ fn main() {
     compound_primatives();
     strings();
     user_input();
+    math();
+}
+
+fn math() {
+    let x = 11;
+    let y = 9;
+    println!("{} + {} = {}", x, y, x + y);
+    println!("{} - {} = {}", x, y, x - y);
+    println!("{} * {} = {}", x, y, x * y);
+    println!("{} / {} = {}", x, y, x / y);
+    println!("{} % {} = {}", x, y, x % y);
 }
 
 fn user_input() {
