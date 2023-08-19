@@ -13,6 +13,35 @@ fn main() {
     strings();
     user_input();
     math();
+    challenge2();
+}
+
+fn challenge2() {
+    /* Build a simple calculator that takes two user inputs
+       then calculates the addition, subtraction, multiplication, and division
+       of those two inputs.
+    */
+
+    println!("Give me a value for x");
+    let mut input_x = String::new();
+    let result_x = io::stdin().read_line(&mut input_x);
+
+    let x: i32 = input_x.trim().parse().expect("Entry was not an integer!");
+    let float_x = f64::from(x);
+
+    println!("Give me a value for y");
+    let mut input_y = String::new();
+    let result_y = io::stdin().read_line(&mut input_y);
+
+    let y: i32 = input_y.trim().parse().expect("Entry was not an integer!");
+    let float_y = f64::from(y);
+
+    println!("{result_x:?}");
+    println!("{result_y:?}");
+    println!("The result of {} + {} is {}", x, y, x + y);
+    println!("The result of {} - {} is {}", x, y, x - y);
+    println!("The result of {} * {} is {}", x, y, x * y);
+    println!("The result of {} / {} is {}", x, y, float_x / float_y);
 }
 
 fn math() {
