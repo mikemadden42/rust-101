@@ -14,6 +14,91 @@ fn main() {
     user_input();
     math();
     challenge2();
+    comparisons();
+    conditionals();
+    matches();
+    loops();
+}
+
+fn loops() {
+    let mut count = 0;
+    loop {
+        count += 1;
+        println!("Count: {count}");
+        if count == 10 {
+            break;
+        }
+    }
+
+    let mut count = 0;
+    while count < 10 {
+        count += 1;
+        println!("Count: {count}");
+    }
+
+    for _ in 1..=10 {
+        println!("Count: {count}");
+    }
+
+    let numbers = vec![1, 2, 3, 4, 5];
+
+    for num in numbers {
+        println!("Number: {num}");
+    }
+}
+
+fn matches() {
+    let age = 33;
+    // match must cover all possible values.
+    match age {
+        1..=24 => println!("Cannot hold office"),
+        25..=29 => println!("Can run for the house"),
+        30..=34 => println!("Can run for the senate"),
+        35..=i32::MAX => println!("Can run for president"),
+        _ => println!("Are you an infant"),
+    };
+}
+
+fn conditionals() {
+    println!("How much money do you have?");
+    let mut input_money = String::new();
+    let _ = io::stdin().read_line(&mut input_money);
+
+    let money: i32 = input_money
+        .trim()
+        .parse()
+        .expect("Entry was not an integer");
+
+    println!("How old are you?");
+    let mut input_age = String::new();
+    let _ = io::stdin().read_line(&mut input_age);
+
+    let age: i32 = input_age.trim().parse().expect("Entry was not an integer");
+
+    if (age >= 21) && (money >= 5) {
+        println!("We're getting a drink!");
+    } else if (age >= 21) && (money < 5) {
+        println!("Come back with more money!");
+    } else if (age < 21) && (money >= 5) {
+        println!("Nice try, kid!");
+    } else {
+        println!("You're too young and too poor.");
+    };
+}
+fn comparisons() {
+    let a = 5;
+    let b = 10;
+    let c = true;
+    let d = false;
+
+    println!("a > b: {}", a > b); // false
+    println!("a >= b: {}", a >= b); // false
+    println!("a < b: {}", a < b); // true
+    println!("a <= b: {}", a <= b); // true
+    println!("a == b: {}", a == b); // false
+    println!("a != b: {}", a != b); // true
+    println!("True or False: {}", c || d); //true
+    println!("True and False: {}", c && d); //false
 }
 
 fn challenge2() {
