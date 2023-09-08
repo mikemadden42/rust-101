@@ -18,6 +18,114 @@ fn main() {
     conditionals();
     matches();
     loops();
+    challenge3();
+    vectors();
+    structs();
+    enums();
+}
+
+fn enums() {
+    #[derive(Debug)]
+    enum Shape {
+        Circle(f32),
+        Rectangle(f32, f32),
+    }
+
+    let circle = Shape::Circle(10.0);
+    let rectangle = Shape::Rectangle(30.0, 40.0);
+
+    dbg!(circle);
+    dbg!(rectangle);
+}
+
+fn structs() {
+    struct Rectangle {
+        width: u32,
+        height: u32,
+    }
+
+    impl Rectangle {
+        fn area(&self) -> u32 {
+            self.width * self.height
+        }
+    }
+
+    let rect = Rectangle {
+        width: 30,
+        height: 50,
+    };
+
+    let area = rect.area();
+    println!("The area of the rectangle is {area}");
+}
+
+fn vectors() {
+    let vec = vec![1, 2, 3];
+    dbg!(&vec);
+
+    for num in vec {
+        println!("{num}");
+    }
+}
+
+fn challenge3() {
+    println!("Rust 101 Calculator");
+    println!("You must select two values (x and y) and an operator.");
+
+    //Receive a value for X
+    println!("Please give me a value for X.");
+
+    let mut x = String::new();
+    let _ = io::stdin().read_line(&mut x);
+    let x: i32 = x.trim().parse().expect("Entry was not an integer.");
+    let float_x = f64::from(x);
+
+    //Receive a value for Y
+    println!("Please give me a value for Y.");
+
+    let mut y = String::new();
+    let _ = io::stdin().read_line(&mut y);
+    let y: i32 = y.trim().parse().expect("Entry was not an integer.");
+    let float_y = f64::from(y);
+
+    //Receive an operator
+    println!("Choose an operator: +, -, *, /");
+    let mut operator = String::new();
+    let _ = io::stdin().read_line(&mut operator);
+    let operator_slice = operator.trim();
+
+    //Match operator
+    match operator_slice {
+        "+" => {
+            add(x, y);
+        }
+        "-" => {
+            subtract(x, y);
+        }
+        "*" => {
+            multiply(x, y);
+        }
+        "/" => {
+            divide(float_x, float_y);
+        }
+        &_ => {
+            println!("Invalid entry. Exiting program.");
+        }
+    }
+}
+
+//Math functions
+fn add(x: i32, y: i32) {
+    println!("The result of {} + {} = {}", x, y, x + y);
+}
+fn subtract(x: i32, y: i32) {
+    println!("The result of {} - {} = {}", x, y, x - y);
+}
+fn multiply(x: i32, y: i32) {
+    println!("The result of {} * {} = {}", x, y, x * y);
+}
+fn divide(x: f64, y: f64) {
+    println!("The result of {} / {} = {}", x, y, x / y);
 }
 
 fn loops() {
