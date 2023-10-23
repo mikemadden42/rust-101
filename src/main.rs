@@ -22,6 +22,73 @@ fn main() {
     vectors();
     structs();
     enums();
+    generics();
+    traits();
+    ownership();
+    borrowing();
+}
+
+fn borrowing() {
+    fn calculate_length(s: &String) -> usize {
+        // s is a reference to a String value
+        s.len() // return the length of the string pointed to by s
+    } // s goes out of scope, but because it's a reference and doesn't own the string, nothing happens
+
+    let s1 = String::from("hello"); // s1 is the owner of the string "hello"
+    let len = calculate_length(&s1); // pass a reference to s1 to the calculate_length function
+    println!("The length of '{s1}' is {len}.");
+
+    let x = 10; // x is an integer variable
+    let ptr = &x; // ptr is a reference to x
+    println!("{}", *ptr); // dereference ptr to access the value of x
+
+    let x = Box::new(10); // x is a pointer to an integer value
+    let ptr = &x; // ptr is a reference to x
+    println!("{}", **ptr); // double dereference ptr to access the value of x
+}
+
+fn ownership() {
+    // Ownership has 3 rules:
+    // Each value has 1 owner.
+    // There can only be 1 owner at a time.
+    // When the owner goes out of scope, the memory is freed.
+}
+
+fn traits() {
+    trait Drawable {
+        fn draw(&self);
+    }
+
+    struct Circle {
+        radius: f32,
+    }
+
+    impl Drawable for Circle {
+        fn draw(&self) {
+            println!("Drawing a circle with radius {}", self.radius);
+        }
+    }
+
+    let circle = Circle { radius: 10.0 };
+    circle.draw(); // prints "Drawing a circle with radius 10"
+}
+
+fn generics() {
+    fn sum<T: std::ops::Add<Output = T>>(a: T, b: T) -> T {
+        a + b
+    }
+
+    struct Vector<T> {
+        x: T,
+        y: T,
+    }
+
+    let x = sum(1, 2);
+    let y = sum(1.0, 2.0);
+    println!("{x} {y}");
+
+    let v = Vector { x: 1.0, y: 2.0 };
+    println!("({}, {})", v.x, v.y); // prints "(1, 2)"
 }
 
 fn enums() {
