@@ -1,4 +1,6 @@
+use std::fs::File;
 use std::io;
+use std::io::prelude::*;
 
 // These constants are global.
 const MPG: f64 = 37.5;
@@ -26,6 +28,16 @@ fn main() {
     traits();
     ownership();
     borrowing();
+    let result = read_file();
+    println!("{result:?}");
+}
+
+fn read_file() -> std::io::Result<()> {
+    let mut file = File::open("README.md")?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+    println!("{contents}");
+    Ok(())
 }
 
 fn borrowing() {
