@@ -30,6 +30,33 @@ fn main() {
     borrowing();
     let result = read_file();
     println!("{result:?}");
+    errors();
+    let result = read_file2("README2.md");
+    match result {
+        Ok(contents) => println!("File contents: {contents}"),
+        Err(err) => println!("Error reading file: {err}"),
+    }
+}
+
+fn divide_me(x: i32, y: i32) -> Result<i32, String> {
+    if y == 0 {
+        return Err(String::from("Cannot divide by zero"));
+    }
+    Ok(x / y)
+}
+
+fn errors() {
+    let result = divide_me(10, 2);
+    match result {
+        Ok(value) => println!("Result: {value}"),
+        Err(msg) => println!("Error: {msg}"),
+    }
+
+    let result = divide_me(10, 2).unwrap();
+    println!("Result: {result}");
+
+    let result2 = divide_me(10, 0).expect("Division by zero");
+    println!("Result2: {result2}");
 }
 
 fn read_file() -> std::io::Result<()> {
@@ -38,6 +65,13 @@ fn read_file() -> std::io::Result<()> {
     file.read_to_string(&mut contents)?;
     println!("{contents}");
     Ok(())
+}
+
+fn read_file2(path: &str) -> Result<String, std::io::Error> {
+    let mut file = File::open(path)?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+    Ok(contents)
 }
 
 fn borrowing() {
