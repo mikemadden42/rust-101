@@ -65,7 +65,7 @@ fn main() {
 
     //Calculate final score
     let total_questions = 3;
-    let percentage = (correct_answers as f32 / total_questions as f32) * 100.0;
+    let percentage = (f64::from(correct_answers) / f64::from(total_questions)) * 100.0;
 
     println!(
         "\nYou got {correct_answers} out of {total_questions} questions correct ({percentage:.2})%"
