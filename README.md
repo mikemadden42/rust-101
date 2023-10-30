@@ -1,6 +1,6 @@
 # rust-101
 
-Examples from TCM Security's Rust 101 course
+Examples from TCM Security's Rust 101 [course](https://academy.tcm-sec.com/p/rust-101)
 
 ```bash
 # Check for formatting issues.
