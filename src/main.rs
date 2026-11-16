@@ -8,10 +8,10 @@ const BIRTHDAY: i32 = 1;
 
 fn main() {
     println!("Hello, Rust 101!");
-    primatives();
+    primitives();
     variables();
     challenge1();
-    compound_primatives();
+    compound_primitives();
     strings();
     user_input();
     math();
@@ -55,6 +55,8 @@ fn errors() {
     let result = divide_me(10, 2).unwrap();
     println!("Result: {result}");
 
+    // NOTE: this `expect` panics (division by zero), so `main` aborts here —
+    // the calls after `errors()` in `main` are never reached.
     let result2 = divide_me(10, 0).expect("Division by zero");
     println!("Result2: {result2}");
 }
@@ -75,8 +77,8 @@ fn read_file2(path: &str) -> Result<String, std::io::Error> {
 }
 
 fn borrowing() {
-    fn calculate_length(s: &String) -> usize {
-        // s is a reference to a String value
+    fn calculate_length(s: &str) -> usize {
+        // s is a reference to a string value
         s.len() // return the length of the string pointed to by s
     } // s goes out of scope, but because it's a reference and doesn't own the string, nothing happens
 
@@ -138,6 +140,8 @@ fn generics() {
 }
 
 fn enums() {
+    // Fields are only inspected via `dbg!`, which dead-code analysis ignores.
+    #[allow(dead_code)]
     #[derive(Debug)]
     enum Shape {
         Circle(f32),
@@ -277,7 +281,7 @@ fn matches() {
         30..=34 => println!("Can run for the senate"),
         35..=i32::MAX => println!("Can run for president"),
         _ => println!("Are you an infant"),
-    };
+    }
 }
 
 fn conditionals() {
@@ -304,7 +308,7 @@ fn conditionals() {
         println!("Nice try, kid!");
     } else {
         println!("You're too young and too poor.");
-    };
+    }
 }
 fn comparisons() {
     let a = 5;
@@ -387,7 +391,7 @@ fn strings() {
     println!("{name1}");
 
     let name2 = "Virgil Earp".to_string();
-    let name3 = String::from("Doc Holiday");
+    let name3 = String::from("Doc Holliday");
     println!("{name2}");
     println!("{name3}");
 
@@ -398,15 +402,15 @@ fn strings() {
     println!("{heart}");
 }
 
-fn compound_primatives() {
+fn compound_primitives() {
     // TUPLES
     // Max number of items in a tuple is 12.
-    let student_a = ("Johhny", "C", 2.01);
+    let student_a = ("Johnny", "C", 2.01);
     // let name = student_a.0;
     // let grade = student_a.1;
     // let gpa = student_a.2;
     let (name, grade, gpa) = student_a;
-    println!("Name: {name}, Grade: {grade}, GPU: {gpa}");
+    println!("Name: {name}, Grade: {grade}, GPA: {gpa}");
 
     // ARRAYS
     // Use brackets [].
@@ -444,11 +448,11 @@ fn challenge1() {
 }
 
 fn variables() {
-    // Variables are imutable by default.
+    // Variables are immutable by default.
     let greeting = "Hello, world!";
     println!("{greeting}");
 
-    // This will to work without declaring greeting with a mut.
+    // This will not work without declaring greeting with a mut.
     // greeting = "Hello, again!";
     // println!("{greeting}");
 
@@ -462,7 +466,7 @@ fn variables() {
     println!("y = {y}");
 }
 
-fn primatives() {
+fn primitives() {
     // integers
     println!("Max size of u32: {}", u32::MAX);
     println!("Max size of u64: {}", u64::MAX);

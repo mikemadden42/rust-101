@@ -13,14 +13,14 @@ fn main() {
     println!("1. What is the capital city of France?");
     println!("A. London");
     println!("B. Paris");
-    println!("C: Rome");
+    println!("C. Rome");
     print!("Your answer: ");
     io::stdout().flush().unwrap();
 
     let mut answer = String::new();
     io::stdin().read_line(&mut answer).unwrap();
 
-    if answer.trim().to_ascii_uppercase() == "B" {
+    if answer.trim().eq_ignore_ascii_case("B") {
         println!("Correct!");
         correct_answers += 1;
     } else {
@@ -31,14 +31,14 @@ fn main() {
     println!("\n2. What is the largest country in the world by area?");
     println!("A. Russia");
     println!("B. Canada");
-    println!("C: China");
+    println!("C. China");
     print!("Your answer: ");
     io::stdout().flush().unwrap();
 
     answer.clear();
     io::stdin().read_line(&mut answer).unwrap();
 
-    if answer.trim().to_ascii_uppercase() == "A" {
+    if answer.trim().eq_ignore_ascii_case("A") {
         println!("Correct!");
         correct_answers += 1;
     } else {
@@ -56,7 +56,7 @@ fn main() {
     answer.clear();
     io::stdin().read_line(&mut answer).unwrap();
 
-    if answer.trim().to_ascii_uppercase() == "B" {
+    if answer.trim().eq_ignore_ascii_case("B") {
         println!("Correct!");
         correct_answers += 1;
     } else {

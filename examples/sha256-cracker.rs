@@ -15,33 +15,33 @@ fn main() {
 
     let wanted_hash = &args[1];
     let password_file = "src/rockyou.txt";
-    let mut attempts = 1;
 
-    println!("Attempting to back: {wanted_hash}!\n");
+    println!("Attempting to crack: {wanted_hash}!\n");
 
-    let password_list = File::open(password_file).unwrap();
+    let password_list = match File::open(password_file) {
+        Ok(file) => file,
+        Err(err) => {
+            eprintln!("Error opening wordlist '{password_file}': {err}");
+            eprintln!("Place a wordlist (e.g. rockyou.txt) at that path and try again.");
+            exit(1);
+        }
+    };
     let reader = BufReader::new(password_list);
 
-    for line in reader.lines() {
-        let line = line.unwrap();
-        let password = line.trim().to_owned().into_bytes();
-        let password_hash = format!("{:x}", Sha256::digest(&password));
-        println!(
-            "[{}] {} == {}",
-            attempts,
-            std::str::from_utf8(&password).unwrap(),
-            password_hash
-        );
+    for (attempts, line) in (1..).zip(reader.lines()) {
+        let line = match line {
+            Ok(line) => line,
+            Err(err) => {
+                eprintln!("Error reading wordlist: {err}");
+                continue;
+            }
+        };
+        let password = line.trim();
+        let password_hash = format!("{:x}", Sha256::digest(password.as_bytes()));
         if &password_hash == wanted_hash {
-            println!(
-                "Password hash found after {} attempts! {} hashes to {}!",
-                attempts,
-                std::str::from_utf8(&password).unwrap(),
-                password_hash
-            );
+            println!("Password hash found after {attempts} attempts! {password} hashes to {password_hash}!");
             exit(0);
         }
-        attempts += 1;
     }
 
     println!("Password hash not found!");
